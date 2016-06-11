@@ -1,22 +1,19 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 
-import ExampleComponent from '../ExampleComponent/ExampleComponent';
-import configureStore from './configureStore';
+import routes, { store } from './routes';
+import { currentUserInfo } from '../auth/authActions';
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+// run initial actions #################################################################################################
+store.dispatch(currentUserInfo()).catch(() => {});
+// #####################################################################################################################
 
 const RootComponent = () => {
     return (
         <Provider store={store}>
-            <Router history={history}>
-                    <Route path='/' component={ExampleComponent}>
-                    </Route>
-            </Router>
+            {routes}
         </Provider>
     );
 };
