@@ -7,7 +7,7 @@ import (
 )
 
 var adminToBeCreated = user.User{
-	Roles: []string{"admin"},
+	Roles: []string{"admin", "user"},
 }
 
 var (
